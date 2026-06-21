@@ -178,10 +178,10 @@ footer{
 <button class="btn" onclick="login()">Login</button>
 
 <div id="adminPanel" style="display:none;margin-top:15px;">
-<h3>Upload PDF LINK (Google Drive or Direct PDF link)</h3>
+<h3>Upload PDF LINK (Google Drive / Direct PDF URL)</h3>
 
 <input type="text" id="title" placeholder="News Title">
-<input type="text" id="pdfLink" placeholder="Paste PDF Link (Google Drive / URL)">
+<input type="text" id="pdfLink" placeholder="Paste PDF Link">
 
 <button class="btn" onclick="addNews()">Upload News</button>
 </div>
@@ -258,7 +258,7 @@ function login(){
     }
 }
 
-/* ADD NEWS (NOW USING URL ONLY → WORKS AFTER REFRESH) */
+/* ADD NEWS (PERMANENT LINK SYSTEM) */
 function addNews(){
     let t = document.getElementById("title").value.trim();
     let link = document.getElementById("pdfLink").value.trim();
