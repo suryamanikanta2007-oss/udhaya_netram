@@ -178,10 +178,10 @@ footer{
 <button class="btn" onclick="login()">Login</button>
 
 <div id="adminPanel" style="display:none;margin-top:15px;">
-<h3>Upload Daily PDF</h3>
+<h3>Upload PDF LINK (Google Drive or Direct PDF link)</h3>
 
 <input type="text" id="title" placeholder="News Title">
-<input type="file" id="pdfFile" accept="application/pdf">
+<input type="text" id="pdfLink" placeholder="Paste PDF Link (Google Drive / URL)">
 
 <button class="btn" onclick="addNews()">Upload News</button>
 </div>
@@ -258,38 +258,30 @@ function login(){
     }
 }
 
-/* ADD NEWS (FIXED BASE64 PDF STORAGE) */
+/* ADD NEWS (NOW USING URL ONLY → WORKS AFTER REFRESH) */
 function addNews(){
     let t = document.getElementById("title").value.trim();
-    let file = document.getElementById("pdfFile").files[0];
+    let link = document.getElementById("pdfLink").value.trim();
 
-    if(!t || !file){
+    if(!t || !link){
         alert("Fill all fields");
         return;
     }
 
-    let reader = new FileReader();
+    news.unshift({
+        title: t,
+        pdf: link
+    });
 
-    reader.onload = function(e){
-        let pdfBase64 = e.target.result;
+    localStorage.setItem("news", JSON.stringify(news));
 
-        news.unshift({ 
-            title: t, 
-            pdf: pdfBase64 
-        });
+    document.getElementById("title").value = "";
+    document.getElementById("pdfLink").value = "";
 
-        localStorage.setItem("news", JSON.stringify(news));
+    loadNews();
+    openPDF(link);
 
-        document.getElementById("title").value = "";
-        document.getElementById("pdfFile").value = "";
-
-        loadNews();
-        openPDF(pdfBase64);
-
-        alert("Uploaded Successfully");
-    };
-
-    reader.readAsDataURL(file);
+    alert("Uploaded Successfully");
 }
 
 /* DELETE NEWS */
