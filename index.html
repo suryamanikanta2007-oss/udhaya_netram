@@ -6,31 +6,50 @@
 <title>Udhaya Netram Daily E-Paper</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f4f4f4;color:#222}
-header{background:linear-gradient(90deg,#9b0000,#e60000);color:white;text-align:center;padding:25px 10px}
-.logo{font-family:Georgia,serif;font-size:44px;font-weight:900;letter-spacing:3px}
-.telugu{font-size:24px;margin-top:5px}
-nav{background:#7a0000;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;padding:12px}
-nav a{color:white;text-decoration:none;font-weight:bold;cursor:pointer}
-nav a:hover{color:yellow}
-.breaking{background:red;color:white;padding:10px;font-weight:bold}
-.container{width:95%;max-width:1100px;margin:20px auto}
-.section{display:none;background:white;padding:20px;border-radius:8px;box-shadow:0 0 8px #ccc}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:linear-gradient(135deg,#fff3f3,#fff8e8,#f5f7ff);color:#222}
+header{background:linear-gradient(135deg,#6d0000,#d60000,#ff7b00);color:white;text-align:center;padding:38px 10px;box-shadow:0 8px 25px #0004}
+.logo{font-family:Georgia,serif;font-size:52px;font-weight:900;letter-spacing:4px;text-shadow:3px 3px 8px #0008}
+.telugu{font-size:26px;margin-top:8px;font-weight:bold}
+header p{margin-top:8px;font-size:18px}
+
+nav{background:#3b0000;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:14px;position:sticky;top:0;z-index:10;box-shadow:0 5px 15px #0005}
+nav a{color:white;text-decoration:none;font-weight:bold;cursor:pointer;padding:10px 18px;border-radius:25px;transition:.3s}
+nav a:hover{background:white;color:#b30000}
+
+.breaking{background:linear-gradient(90deg,#ff0000,#9b0000);color:white;padding:12px;font-weight:bold}
+
+.container{width:95%;max-width:1150px;margin:25px auto}
+.section{display:none;background:#fffffff2;padding:25px;border-radius:18px;box-shadow:0 10px 30px #0002;animation:fade .4s}
 .section.active{display:block}
-h2{color:#b30000;margin-bottom:15px}
-h3{margin-top:15px;color:#333}
-.card{background:#fff;border:1px solid #ddd;padding:15px;margin:12px 0;border-radius:6px}
-input,textarea,button{width:100%;padding:10px;margin:8px 0;font-size:16px}
-textarea{min-height:90px}
-button{background:#b30000;color:white;border:none;font-weight:bold;cursor:pointer;border-radius:5px}
-button:hover{background:#7a0000}
-.pdf-viewer{width:100%;height:80vh;border:1px solid #aaa;margin-top:15px}
-.edition-btn{background:#eee;color:#111;text-align:left;border:1px solid #ddd}
-.admin-box{max-width:500px;margin:auto}
-.status{font-weight:bold;margin-top:10px;color:#b30000}
-footer{text-align:center;background:#111;color:white;padding:20px;margin-top:30px}
-@media(max-width:600px){.logo{font-size:32px}.pdf-viewer{height:65vh}}
+@keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
+h2{color:#b30000;margin-bottom:18px;font-size:30px;border-left:6px solid #ff7b00;padding-left:12px}
+h3{margin-top:15px;color:#222}
+
+.card{background:linear-gradient(135deg,#fff,#fff0f0);border:1px solid #ffd1d1;padding:18px;margin:14px 0;border-radius:14px;box-shadow:0 6px 18px #0001}
+
+input,textarea,button{width:100%;padding:13px;margin:9px 0;font-size:16px;border-radius:10px}
+input,textarea{border:1px solid #ccc;outline:none}
+input:focus,textarea:focus{border-color:#e60000;box-shadow:0 0 8px #e6000040}
+textarea{min-height:100px}
+
+button{background:linear-gradient(135deg,#b30000,#ff4500);color:white;border:none;font-weight:bold;cursor:pointer;transition:.3s}
+button:hover{transform:translateY(-2px);background:linear-gradient(135deg,#7a0000,#e60000)}
+
+.pdf-viewer{width:100%;height:80vh;border:2px solid #b30000;margin-top:15px;border-radius:14px;background:white}
+.edition-btn{background:linear-gradient(135deg,#fff,#ffecec);color:#111;text-align:left;border:1px solid #ffc2c2}
+.edition-btn:hover{color:white;background:linear-gradient(135deg,#b30000,#ff4500)}
+
+.admin-box{max-width:550px;margin:auto;background:white;padding:25px;border-radius:18px;box-shadow:0 8px 25px #0003}
+.status{font-weight:bold;margin-top:10px;color:#b30000;text-align:center}
+.note{background:#fff8df;border-left:5px solid #ff9800;padding:12px;border-radius:10px;margin:10px 0}
+#contact p{background:#fff5f5;padding:12px;margin:10px 0;border-radius:10px;border-left:5px solid #b30000}
+footer{text-align:center;background:linear-gradient(135deg,#111,#3b0000);color:white;padding:22px;margin-top:35px}
+
+@media(max-width:600px){
+.logo{font-size:34px}.telugu{font-size:22px}nav a{font-size:14px;padding:9px 12px}h2{font-size:24px}.pdf-viewer{height:65vh}
+}
 </style>
 </head>
 
@@ -51,7 +70,7 @@ footer{text-align:center;background:#111;color:white;padding:20px;margin-top:30p
 </nav>
 
 <div class="breaking">
-  <marquee>Breaking News: Welcome to Udhaya Netram Daily Telugu E-Paper</marquee>
+  <marquee>🔥 Breaking News: Welcome to Udhaya Netram Daily Telugu E-Paper 🔥</marquee>
 </div>
 
 <div class="container">
@@ -92,13 +111,17 @@ footer{text-align:center;background:#111;color:white;padding:20px;margin-top:30p
     </div>
 
     <div id="adminPanel" style="display:none">
-      <h3>Upload Daily PDF</h3>
+      <h3>Add Daily PDF Link</h3>
+
+      <div class="note">
+        First upload PDF in GitHub <b>pdfs</b> folder, then paste PDF link here.
+      </div>
 
       <input type="text" id="pdfTitle" placeholder="PDF Title">
       <input type="date" id="pdfDate">
-      <input type="file" id="pdfFile" accept="application/pdf">
+      <input type="url" id="pdfUrl" placeholder="Paste GitHub PDF link here">
 
-      <button type="button" onclick="uploadPDF()">Upload PDF</button>
+      <button type="button" onclick="uploadPDF()">Save PDF Link</button>
 
       <h3>Add Latest News</h3>
 
@@ -133,13 +156,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-import {
   getAuth,
   signInWithEmailAndPassword,
   signOut,
@@ -147,18 +163,17 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDmnza1ol0Rvp-ciw3DsdZkr8NIfAGzj8A",
-    authDomain: "udhayanetram.firebaseapp.com",
-    projectId: "udhayanetram",
-    storageBucket: "udhayanetram.firebasestorage.app",
-    messagingSenderId: "134674275465",
-    appId: "1:134674275465:web:0f8e2847ccdd49f3f87a58",
-    measurementId: "G-RWKERMPGDJ"
-  };
+  apiKey: "AIzaSyDmnza1ol0Rvp-ciw3DsdZkr8NIfAGzj8A",
+  authDomain: "udhayanetram.firebaseapp.com",
+  projectId: "udhayanetram",
+  storageBucket: "udhayanetram.firebasestorage.app",
+  messagingSenderId: "134674275465",
+  appId: "1:134674275465:web:0f8e2847ccdd49f3f87a58",
+  measurementId: "G-RWKERMPGDJ"
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app);
 const auth = getAuth(app);
 
 function status(msg){
@@ -173,12 +188,7 @@ window.showPage = function(id){
 onAuthStateChanged(auth, user => {
   document.getElementById("loginBox").style.display = user ? "none" : "block";
   document.getElementById("adminPanel").style.display = user ? "block" : "none";
-
-  if(user){
-    status("Admin logged in");
-  }else{
-    status("");
-  }
+  status(user ? "Admin logged in" : "");
 });
 
 window.loginAdmin = async function(){
@@ -207,53 +217,42 @@ window.uploadPDF = async function(){
   try{
     const title = document.getElementById("pdfTitle").value.trim();
     const date = document.getElementById("pdfDate").value;
-    const fileInput = document.getElementById("pdfFile");
-    const file = fileInput.files[0];
+    const url = document.getElementById("pdfUrl").value.trim();
 
     if(!auth.currentUser){
       status("Please login first");
       return;
     }
 
-    if(!title || !date || !file){
-      status("Fill PDF title, date and select PDF file");
+    if(!title || !date || !url){
+      status("Fill PDF title, date and PDF link");
       return;
     }
 
-    if(file.type !== "application/pdf"){
-      status("Only PDF file allowed");
+    if(!url.startsWith("http")){
+      status("Paste valid PDF link");
       return;
     }
-
-    status("Uploading PDF... Please wait");
-
-    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-    const filePath = "epapers/" + Date.now() + "_" + safeName;
-    const fileRef = ref(storage, filePath);
-
-    const uploadResult = await uploadBytes(fileRef, file);
-    const url = await getDownloadURL(uploadResult.ref);
 
     await addDoc(collection(db, "editions"), {
-      title: title,
-      date: date,
-      url: url,
-      path: filePath,
-      createdAt: serverTimestamp()
+      title:title,
+      date:date,
+      url:url,
+      createdAt:serverTimestamp()
     });
 
     document.getElementById("pdfTitle").value = "";
     document.getElementById("pdfDate").value = "";
-    fileInput.value = "";
+    document.getElementById("pdfUrl").value = "";
 
-    status("PDF uploaded successfully");
+    status("PDF link saved successfully");
 
     await loadEditions();
     showPage("epaper");
 
   }catch(error){
     console.error(error);
-    status("Upload failed: " + error.message);
+    status("PDF save failed: " + error.message);
   }
 };
 
@@ -273,9 +272,9 @@ window.addNews = async function(){
     }
 
     await addDoc(collection(db, "news"), {
-      title: title,
-      text: text,
-      createdAt: serverTimestamp()
+      title:title,
+      text:text,
+      createdAt:serverTimestamp()
     });
 
     document.getElementById("newsTitle").value = "";
