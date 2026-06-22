@@ -469,6 +469,25 @@ function escapeText(text){
 
 loadEditions();
 loadNews();
+  home.innerHTML = `
+  <div class="card">
+    <h3>Today's E-Paper</h3>
+    <p>${e.title || ""}</p>
+    <p><small>${e.date || ""}</small></p>
+
+    <button type="button" onclick="openPDF('${e.url}')">Open E-Paper</button>
+
+    ${isAdmin ? `
+      <button class="small-btn" type="button" onclick="editPDF('${docSnap.id}','${escapeText(e.title)}','${escapeText(e.date)}','${escapeText(e.url)}')">
+        Edit PDF
+      </button>
+
+      <button class="small-btn delete-btn" type="button" onclick="deletePDF('${docSnap.id}')">
+        Delete PDF
+      </button>
+    ` : ""}
+  </div>
+`;
 </script>
 
 </body>
