@@ -12,44 +12,29 @@ header{background:linear-gradient(135deg,#6d0000,#d60000,#ff7b00);color:white;te
 .logo{font-family:Georgia,serif;font-size:52px;font-weight:900;letter-spacing:4px;text-shadow:3px 3px 8px #0008}
 .telugu{font-size:26px;margin-top:8px;font-weight:bold}
 header p{margin-top:8px;font-size:18px}
-
-nav{background:#3b0000;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:14px;position:sticky;top:0;z-index:10;box-shadow:0 5px 15px #0005}
-nav a{color:white;text-decoration:none;font-weight:bold;cursor:pointer;padding:10px 18px;border-radius:25px;transition:.3s}
+nav{background:#3b0000;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:14px;position:sticky;top:0;z-index:10}
+nav a{color:white;text-decoration:none;font-weight:bold;cursor:pointer;padding:10px 18px;border-radius:25px}
 nav a:hover{background:white;color:#b30000}
-
 .breaking{background:linear-gradient(90deg,#ff0000,#9b0000);color:white;padding:12px;font-weight:bold}
-
 .container{width:95%;max-width:1150px;margin:25px auto}
-.section{display:none;background:#fffffff2;padding:25px;border-radius:18px;box-shadow:0 10px 30px #0002;animation:fade .4s}
+.section{display:none;background:#fffffff2;padding:25px;border-radius:18px;box-shadow:0 10px 30px #0002}
 .section.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-
 h2{color:#b30000;margin-bottom:18px;font-size:30px;border-left:6px solid #ff7b00;padding-left:12px}
-h3{margin-top:15px;color:#222}
-
 .card{background:linear-gradient(135deg,#fff,#fff0f0);border:1px solid #ffd1d1;padding:18px;margin:14px 0;border-radius:14px;box-shadow:0 6px 18px #0001}
-
 input,textarea,button{width:100%;padding:13px;margin:9px 0;font-size:16px;border-radius:10px}
 input,textarea{border:1px solid #ccc;outline:none}
-input:focus,textarea:focus{border-color:#e60000;box-shadow:0 0 8px #e6000040}
 textarea{min-height:100px}
-
-button{background:linear-gradient(135deg,#b30000,#ff4500);color:white;border:none;font-weight:bold;cursor:pointer;transition:.3s}
-button:hover{transform:translateY(-2px);background:linear-gradient(135deg,#7a0000,#e60000)}
-
+button{background:linear-gradient(135deg,#b30000,#ff4500);color:white;border:none;font-weight:bold;cursor:pointer}
+button:hover{background:linear-gradient(135deg,#7a0000,#e60000)}
+.small-btn{width:auto;padding:9px 15px;margin:6px 5px 0 0;font-size:14px}
+.delete-btn{background:linear-gradient(135deg,#333,#000)}
 .pdf-viewer{width:100%;height:80vh;border:2px solid #b30000;margin-top:15px;border-radius:14px;background:white}
-.edition-btn{background:linear-gradient(135deg,#fff,#ffecec);color:#111;text-align:left;border:1px solid #ffc2c2}
-.edition-btn:hover{color:white;background:linear-gradient(135deg,#b30000,#ff4500)}
-
 .admin-box{max-width:550px;margin:auto;background:white;padding:25px;border-radius:18px;box-shadow:0 8px 25px #0003}
 .status{font-weight:bold;margin-top:10px;color:#b30000;text-align:center}
 .note{background:#fff8df;border-left:5px solid #ff9800;padding:12px;border-radius:10px;margin:10px 0}
 #contact p{background:#fff5f5;padding:12px;margin:10px 0;border-radius:10px;border-left:5px solid #b30000}
 footer{text-align:center;background:linear-gradient(135deg,#111,#3b0000);color:white;padding:22px;margin-top:35px}
-
-@media(max-width:600px){
-.logo{font-size:34px}.telugu{font-size:22px}nav a{font-size:14px;padding:9px 12px}h2{font-size:24px}.pdf-viewer{height:65vh}
-}
+@media(max-width:600px){.logo{font-size:34px}.telugu{font-size:22px}nav a{font-size:14px;padding:9px 12px}h2{font-size:24px}.pdf-viewer{height:65vh}}
 </style>
 </head>
 
@@ -114,12 +99,12 @@ footer{text-align:center;background:linear-gradient(135deg,#111,#3b0000);color:w
       <h3>Add Daily PDF Link</h3>
 
       <div class="note">
-        First upload PDF in GitHub <b>pdfs</b> folder, then paste PDF link here.
+        Upload PDF in GitHub, then paste GitHub Pages PDF link here.
       </div>
 
       <input type="text" id="pdfTitle" placeholder="PDF Title">
       <input type="date" id="pdfDate">
-      <input type="url" id="pdfUrl" placeholder="Paste GitHub PDF link here">
+      <input type="url" id="pdfUrl" placeholder="Paste PDF link here">
 
       <button type="button" onclick="uploadPDF()">Save PDF Link</button>
 
@@ -152,7 +137,10 @@ import {
   getDocs,
   query,
   orderBy,
-  serverTimestamp
+  serverTimestamp,
+  doc,
+  updateDoc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
@@ -176,6 +164,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+let isAdmin = false;
+
 function status(msg){
   document.getElementById("statusMsg").innerText = msg;
 }
@@ -185,10 +175,13 @@ window.showPage = function(id){
   document.getElementById(id).classList.add("active");
 };
 
-onAuthStateChanged(auth, user => {
+onAuthStateChanged(auth, async user => {
+  isAdmin = !!user;
   document.getElementById("loginBox").style.display = user ? "none" : "block";
   document.getElementById("adminPanel").style.display = user ? "block" : "none";
   status(user ? "Admin logged in" : "");
+  await loadEditions();
+  await loadNews();
 });
 
 window.loginAdmin = async function(){
@@ -246,7 +239,6 @@ window.uploadPDF = async function(){
     document.getElementById("pdfUrl").value = "";
 
     status("PDF link saved successfully");
-
     await loadEditions();
     showPage("epaper");
 
@@ -281,13 +273,84 @@ window.addNews = async function(){
     document.getElementById("newsText").value = "";
 
     status("News added successfully");
-
     await loadNews();
     showPage("latest");
 
   }catch(error){
     console.error(error);
     status("News add failed: " + error.message);
+  }
+};
+
+window.editPDF = async function(id, oldTitle, oldDate, oldUrl){
+  if(!auth.currentUser){
+    alert("Admin only");
+    return;
+  }
+
+  const title = prompt("Edit PDF title", oldTitle);
+  if(title === null) return;
+
+  const date = prompt("Edit PDF date", oldDate);
+  if(date === null) return;
+
+  const url = prompt("Edit PDF link", oldUrl);
+  if(url === null) return;
+
+  await updateDoc(doc(db, "editions", id), {
+    title:title,
+    date:date,
+    url:url
+  });
+
+  status("PDF updated");
+  await loadEditions();
+};
+
+window.deletePDF = async function(id){
+  if(!auth.currentUser){
+    alert("Admin only");
+    return;
+  }
+
+  if(confirm("Delete this PDF?")){
+    await deleteDoc(doc(db, "editions", id));
+    status("PDF deleted");
+    await loadEditions();
+  }
+};
+
+window.editNews = async function(id, oldTitle, oldText){
+  if(!auth.currentUser){
+    alert("Admin only");
+    return;
+  }
+
+  const title = prompt("Edit news title", oldTitle);
+  if(title === null) return;
+
+  const text = prompt("Edit news details", oldText);
+  if(text === null) return;
+
+  await updateDoc(doc(db, "news", id), {
+    title:title,
+    text:text
+  });
+
+  status("News updated");
+  await loadNews();
+};
+
+window.deleteNews = async function(id){
+  if(!auth.currentUser){
+    alert("Admin only");
+    return;
+  }
+
+  if(confirm("Delete this news?")){
+    await deleteDoc(doc(db, "news", id));
+    status("News deleted");
+    await loadNews();
   }
 };
 
@@ -316,17 +379,20 @@ async function loadEditions(){
 
     snap.forEach(docSnap => {
       const e = docSnap.data();
+      const div = document.createElement("div");
+      div.className = "card";
 
-      const btn = document.createElement("button");
-      btn.className = "edition-btn";
-      btn.innerHTML = `<b>${e.title}</b><br><small>${e.date}</small>`;
+      div.innerHTML = `
+        <h3>${e.title || ""}</h3>
+        <p><small>${e.date || ""}</small></p>
+        <button type="button" onclick="openPDF('${e.url}')">Open E-Paper</button>
+        ${isAdmin ? `
+          <button class="small-btn" type="button" onclick="editPDF('${docSnap.id}','${escapeText(e.title)}','${escapeText(e.date)}','${escapeText(e.url)}')">Edit PDF</button>
+          <button class="small-btn delete-btn" type="button" onclick="deletePDF('${docSnap.id}')">Delete PDF</button>
+        ` : ""}
+      `;
 
-      btn.onclick = () => {
-        frame.src = e.url;
-        showPage("epaper");
-      };
-
-      list.appendChild(btn);
+      list.appendChild(div);
 
       if(first){
         frame.src = e.url;
@@ -334,8 +400,8 @@ async function loadEditions(){
         home.innerHTML = `
           <div class="card">
             <h3>Today's E-Paper</h3>
-            <p>${e.title}</p>
-            <p><small>${e.date}</small></p>
+            <p>${e.title || ""}</p>
+            <p><small>${e.date || ""}</small></p>
             <button type="button" onclick="showPage('epaper')">Open E-Paper</button>
           </div>
         `;
@@ -350,6 +416,11 @@ async function loadEditions(){
     home.innerHTML = "<p>Error loading latest PDF.</p>";
   }
 }
+
+window.openPDF = function(url){
+  document.getElementById("pdfFrame").src = url;
+  showPage("epaper");
+};
 
 async function loadNews(){
   const list = document.getElementById("newsList");
@@ -371,7 +442,14 @@ async function loadNews(){
 
       const div = document.createElement("div");
       div.className = "card";
-      div.innerHTML = `<h3>${n.title}</h3><p>${n.text}</p>`;
+      div.innerHTML = `
+        <h3>${n.title || ""}</h3>
+        <p>${n.text || ""}</p>
+        ${isAdmin ? `
+          <button class="small-btn" type="button" onclick="editNews('${docSnap.id}','${escapeText(n.title)}','${escapeText(n.text)}')">Edit News</button>
+          <button class="small-btn delete-btn" type="button" onclick="deleteNews('${docSnap.id}')">Delete News</button>
+        ` : ""}
+      `;
       list.appendChild(div);
     });
 
@@ -379,6 +457,14 @@ async function loadNews(){
     console.error(error);
     list.innerHTML = "Error loading news: " + error.message;
   }
+}
+
+function escapeText(text){
+  return String(text || "")
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/"/g, "&quot;")
+    .replace(/\n/g, "\\n");
 }
 
 loadEditions();
