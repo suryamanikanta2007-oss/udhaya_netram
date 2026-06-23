@@ -350,17 +350,19 @@ window.addNews=async function(){
 };
 
 window.openPDF = function(url){
-  let finalUrl = url;
+  let finalUrl = url.trim();
 
-  if(url.includes("github.com") && url.includes("/blob/")){
-    finalUrl = url
-      .replace("https://github.com/", "https://raw.githubusercontent.com/")
+  if(finalUrl.includes("github.com") && finalUrl.includes("/blob/")){
+    finalUrl = finalUrl
+      .replace("https://github.com/", "https://raw.githack.com/")
       .replace("/blob/", "/");
   }
 
-  window.open(finalUrl, "_blank");
+  window.open(
+    "https://docs.google.com/gview?embedded=true&url=" + encodeURIComponent(finalUrl),
+    "_blank"
+  );
 };
-
 window.editPDF=async function(id,title,date,url){
   if(!auth.currentUser)return alert("Admin only");
   const nt=prompt("Edit PDF title",title);
