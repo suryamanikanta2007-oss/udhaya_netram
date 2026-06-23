@@ -7,36 +7,238 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:linear-gradient(135deg,#fff3f3,#fff8e8,#f5f7ff);color:#222}
-header{background:linear-gradient(135deg,#6d0000,#d60000,#ff7b00);color:white;text-align:center;padding:38px 10px;box-shadow:0 8px 25px #0004}
-.logo{font-family:Georgia,serif;font-size:52px;font-weight:900;letter-spacing:4px;text-shadow:3px 3px 8px #0008}
-.telugu{font-size:26px;margin-top:8px;font-weight:bold}
-header p{margin-top:8px;font-size:18px}
-nav{background:#3b0000;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:14px;position:sticky;top:0;z-index:10}
-nav a{color:white;text-decoration:none;font-weight:bold;cursor:pointer;padding:10px 18px;border-radius:25px}
-nav a:hover{background:white;color:#b30000}
-.breaking{background:linear-gradient(90deg,#ff0000,#9b0000);color:white;padding:12px;font-weight:bold}
-.container{width:95%;max-width:1150px;margin:25px auto}
-.section{display:none;background:#fffffff2;padding:25px;border-radius:18px;box-shadow:0 10px 30px #0002}
+html{scroll-behavior:smooth}
+body{
+  background:linear-gradient(135deg,#fff7f0,#fff,#f2f7ff);
+  color:#2b2b2b;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,#fff1e6,#ffe8ef,#edf4ff);
+  text-align:center;
+  padding:45px 12px 38px;
+  border-bottom:1px solid #ffd1d1;
+}
+.logo{
+  font-family:Georgia,serif;
+  font-size:56px;
+  font-weight:900;
+  letter-spacing:4px;
+  color:#a40000;
+  text-shadow:2px 2px 0 #fff,4px 4px 12px #ffb199;
+}
+.telugu{
+  font-size:27px;
+  margin-top:10px;
+  font-weight:800;
+  color:#d35400;
+}
+header p{
+  margin-top:8px;
+  color:#555;
+  font-size:18px;
+}
+
+/* NAV */
+nav{
+  background:#ffffffdd;
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:14px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 8px 25px #0001;
+}
+nav a{
+  color:#9b0000;
+  text-decoration:none;
+  font-weight:800;
+  cursor:pointer;
+  padding:10px 20px;
+  border-radius:30px;
+  transition:.25s;
+}
+nav a:hover{
+  background:linear-gradient(135deg,#ff5f6d,#ffc371);
+  color:white;
+  transform:translateY(-2px);
+}
+
+/* BREAKING */
+.breaking{
+  background:linear-gradient(90deg,#fff3cd,#ffe0e0);
+  color:#a40000;
+  padding:12px;
+  font-weight:800;
+  border-bottom:1px solid #ffd5d5;
+}
+
+/* MAIN */
+.container{
+  width:94%;
+  max-width:1180px;
+  margin:30px auto;
+}
+.section{
+  display:none;
+  background:#ffffffee;
+  padding:28px;
+  border-radius:26px;
+  box-shadow:0 15px 45px #00000014;
+  border:1px solid #ffe1e1;
+  animation:fade .35s ease;
+}
 .section.active{display:block}
-h2{color:#b30000;margin-bottom:18px;font-size:30px;border-left:6px solid #ff7b00;padding-left:12px}
-.card{background:linear-gradient(135deg,#fff,#fff0f0);border:1px solid #ffd1d1;padding:18px;margin:14px 0;border-radius:14px;box-shadow:0 6px 18px #0001}
-input,textarea,button{width:100%;padding:13px;margin:9px 0;font-size:16px;border-radius:10px}
-input,textarea{border:1px solid #ccc;outline:none}
-textarea{min-height:100px}
-button{background:linear-gradient(135deg,#b30000,#ff4500);color:white;border:none;font-weight:bold;cursor:pointer}
-button:hover{background:linear-gradient(135deg,#7a0000,#e60000)}
-.small-btn{width:auto;padding:9px 15px;margin:6px 5px 0 0;font-size:14px}
-.delete-btn{background:linear-gradient(135deg,#333,#000)}
-.pdf-viewer{width:100%;min-height:220px;border:2px solid #b30000;margin-top:15px;border-radius:14px;background:white}
-.admin-box{max-width:550px;margin:auto;background:white;padding:25px;border-radius:18px;box-shadow:0 8px 25px #0003}
-.status{font-weight:bold;margin-top:10px;color:#b30000;text-align:center}
-.note{background:#fff8df;border-left:5px solid #ff9800;padding:12px;border-radius:10px;margin:10px 0}
-.profile-card{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-.profile-card img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid #b30000}
-#contact p{background:#fff5f5;padding:12px;margin:10px 0;border-radius:10px;border-left:5px solid #b30000}
-footer{text-align:center;background:linear-gradient(135deg,#111,#3b0000);color:white;padding:22px;margin-top:35px}
-@media(max-width:600px){.logo{font-size:34px}.telugu{font-size:22px}nav a{font-size:14px;padding:9px 12px}h2{font-size:24px}}
+@keyframes fade{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+h2{
+  color:#a40000;
+  margin-bottom:20px;
+  font-size:32px;
+  border-left:7px solid #ff9f43;
+  padding-left:14px;
+}
+.card{
+  background:linear-gradient(135deg,#ffffff,#fff7f7,#fffdf0);
+  border:1px solid #ffdada;
+  padding:20px;
+  margin:16px 0;
+  border-radius:20px;
+  box-shadow:0 10px 25px #0000000f;
+  transition:.25s;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 35px #00000018;
+}
+
+/* PROFILE */
+.profile-card{
+  display:flex;
+  gap:24px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.profile-card img{
+  width:155px;
+  height:155px;
+  border-radius:50%;
+  object-fit:cover;
+  border:6px solid #fff;
+  outline:4px solid #ff9f43;
+  box-shadow:0 10px 30px #0002;
+}
+.profile-card h3{color:#b30000;margin-bottom:8px}
+.profile-card p{margin:5px 0;color:#444}
+
+/* BUTTONS */
+input,textarea,button{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  font-size:16px;
+  border-radius:14px;
+}
+input,textarea{
+  border:1px solid #ddd;
+  outline:none;
+  background:#fffdfd;
+}
+input:focus,textarea:focus{
+  border-color:#ff7b00;
+  box-shadow:0 0 0 3px #ff7b0030;
+}
+textarea{min-height:110px}
+button{
+  background:linear-gradient(135deg,#ff5f6d,#ff9f43);
+  color:white;
+  border:none;
+  font-weight:900;
+  cursor:pointer;
+  transition:.25s;
+}
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px #ff6b0040;
+}
+.small-btn{
+  width:auto;
+  padding:10px 16px;
+  margin:8px 6px 0 0;
+  font-size:14px;
+}
+.delete-btn{
+  background:linear-gradient(135deg,#444,#111);
+}
+
+/* PDF */
+.pdf-viewer{
+  width:100%;
+  min-height:240px;
+  border:2px dashed #ff9f43;
+  margin-top:18px;
+  border-radius:20px;
+  background:#fffdf7;
+}
+
+/* ADMIN */
+.admin-box{
+  max-width:580px;
+  margin:auto;
+  background:linear-gradient(135deg,#fff,#fff8f3);
+  padding:28px;
+  border-radius:24px;
+  box-shadow:0 15px 40px #0002;
+}
+.status{
+  font-weight:800;
+  margin-top:12px;
+  color:#b30000;
+  text-align:center;
+}
+.note{
+  background:#fff4dc;
+  border-left:6px solid #ff9f43;
+  padding:13px;
+  border-radius:12px;
+  margin:12px 0;
+  color:#5c3b00;
+}
+
+/* CONTACT */
+#contact p{
+  background:#fff8f8;
+  padding:14px;
+  margin:12px 0;
+  border-radius:14px;
+  border-left:5px solid #ff9f43;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  background:linear-gradient(135deg,#fff1e6,#ffe8ef);
+  color:#9b0000;
+  font-weight:800;
+  padding:24px;
+  margin-top:40px;
+  border-top:1px solid #ffd1d1;
+}
+
+@media(max-width:650px){
+  .logo{font-size:34px;letter-spacing:2px}
+  .telugu{font-size:22px}
+  nav a{font-size:14px;padding:9px 13px}
+  h2{font-size:25px}
+  .section{padding:20px}
+}
 </style>
 </head>
 
@@ -67,7 +269,7 @@ footer{text-align:center;background:linear-gradient(135deg,#111,#3b0000);color:w
   <p>District, State and National Telugu news daily.</p>
 
   <div class="card profile-card">
-    <img src="https://github.com/suryamanikanta2007-oss/udhaya_netra/blob/bae261f74e6a13155833b00ff4eff1ba1004bbf5/WhatsApp%20Image%202026-06-23%20at%202.22.01%20PM.jpeg" alt="Editor Photo">
+    <img src="https://raw.githubusercontent.com/suryamanikanta2007-oss/udhaya_netra/main/WhatsApp%20Image%202026-06-23%20at%202.22.01%20PM.jpeg" alt="Editor Photo">
     <div>
       <h3>👤 Editor Profile</h3>
       <p><b>Name:</b> Kadali Pallaparaju</p>
@@ -91,10 +293,10 @@ footer{text-align:center;background:linear-gradient(135deg,#111,#3b0000);color:w
   <h2>Digital E-Paper</h2>
   <div id="editionList">Loading...</div>
 
-  <div id="pdfBox" class="pdf-viewer">
-    <div style="padding:30px;text-align:center">
-      <h3>Today's E-Paper</h3>
-      <p>Select an edition and it will open below inside the website.</p>
+  <div id="pdfBox" class="pdf-viewer" style="display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+    <div>
+      <h3>Select an E-Paper</h3>
+      <p>Click <b>Open E-Paper</b> to view the PDF.</p>
     </div>
   </div>
 </section>
@@ -171,9 +373,7 @@ const auth = getAuth(app);
 
 let isAdmin = false;
 
-function status(msg){
-  document.getElementById("statusMsg").innerText = msg;
-}
+function status(msg){ document.getElementById("statusMsg").innerText = msg; }
 
 window.showPage = function(id){
   document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
@@ -193,17 +393,10 @@ window.loginAdmin = async function(){
   try{
     const email = document.getElementById("adminEmail").value.trim();
     const password = document.getElementById("adminPassword").value.trim();
-
-    if(!email || !password){
-      status("Enter email and password");
-      return;
-    }
-
+    if(!email || !password){ status("Enter email and password"); return; }
     await signInWithEmailAndPassword(auth, email, password);
     status("Login successful");
-  }catch(error){
-    status("Login failed: " + error.message);
-  }
+  }catch(error){ status("Login failed: " + error.message); }
 };
 
 window.logoutAdmin = async function(){
@@ -217,26 +410,11 @@ window.uploadPDF = async function(){
     const date = document.getElementById("pdfDate").value;
     const url = document.getElementById("pdfUrl").value.trim();
 
-    if(!auth.currentUser){
-      status("Please login first");
-      return;
-    }
-
-    if(!title || !date || !url){
-      status("Fill PDF title, date and PDF link");
-      return;
-    }
-
-    if(!url.startsWith("http")){
-      status("Paste valid PDF link");
-      return;
-    }
+    if(!auth.currentUser){ status("Please login first"); return; }
+    if(!title || !date || !url){ status("Fill PDF title, date and PDF link"); return; }
 
     await addDoc(collection(db, "editions"), {
-      title:title,
-      date:date,
-      url:url,
-      createdAt:serverTimestamp()
+      title, date, url, createdAt:serverTimestamp()
     });
 
     document.getElementById("pdfTitle").value = "";
@@ -246,9 +424,7 @@ window.uploadPDF = async function(){
     status("PDF link saved successfully");
     await loadEditions();
     showPage("epaper");
-  }catch(error){
-    status("PDF save failed: " + error.message);
-  }
+  }catch(error){ status("PDF save failed: " + error.message); }
 };
 
 window.addNews = async function(){
@@ -256,20 +432,11 @@ window.addNews = async function(){
     const title = document.getElementById("newsTitle").value.trim();
     const text = document.getElementById("newsText").value.trim();
 
-    if(!auth.currentUser){
-      status("Please login first");
-      return;
-    }
-
-    if(!title || !text){
-      status("Fill news title and details");
-      return;
-    }
+    if(!auth.currentUser){ status("Please login first"); return; }
+    if(!title || !text){ status("Fill news title and details"); return; }
 
     await addDoc(collection(db, "news"), {
-      title:title,
-      text:text,
-      createdAt:serverTimestamp()
+      title, text, createdAt:serverTimestamp()
     });
 
     document.getElementById("newsTitle").value = "";
@@ -278,70 +445,30 @@ window.addNews = async function(){
     status("News added successfully");
     await loadNews();
     showPage("latest");
-  }catch(error){
-    status("News add failed: " + error.message);
-  }
+  }catch(error){ status("News add failed: " + error.message); }
 };
 
 window.openPDF = function(url){
-  const cleanUrl = String(url || "").trim();
-
-  if(!cleanUrl){
-    alert("PDF link not found");
-    return;
-  }
-
-  const pdfBox = document.getElementById("pdfBox");
-
-  pdfBox.innerHTML = `
-    <iframe
-      src="${cleanUrl}"
-      width="100%"
-      height="900"
-      style="border:none;border-radius:14px;background:white;">
-    </iframe>
-  `;
-
-  showPage("epaper");
-
-  setTimeout(() => {
-    pdfBox.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }, 100);
+  window.open(url, "_blank");
 };
 
 window.editPDF = async function(id, oldTitle, oldDate, oldUrl){
-  if(!auth.currentUser){
-    alert("Admin only");
-    return;
-  }
+  if(!auth.currentUser){ alert("Admin only"); return; }
 
   const title = prompt("Edit PDF title", oldTitle);
   if(title === null) return;
-
   const date = prompt("Edit PDF date", oldDate);
   if(date === null) return;
-
   const url = prompt("Edit PDF link", oldUrl);
   if(url === null) return;
 
-  await updateDoc(doc(db, "editions", id), {
-    title:title,
-    date:date,
-    url:url
-  });
-
+  await updateDoc(doc(db, "editions", id), { title, date, url });
   status("PDF updated");
   await loadEditions();
 };
 
 window.deletePDF = async function(id){
-  if(!auth.currentUser){
-    alert("Admin only");
-    return;
-  }
+  if(!auth.currentUser){ alert("Admin only"); return; }
 
   if(confirm("Delete this PDF?")){
     await deleteDoc(doc(db, "editions", id));
@@ -351,31 +478,20 @@ window.deletePDF = async function(id){
 };
 
 window.editNews = async function(id, oldTitle, oldText){
-  if(!auth.currentUser){
-    alert("Admin only");
-    return;
-  }
+  if(!auth.currentUser){ alert("Admin only"); return; }
 
   const title = prompt("Edit news title", oldTitle);
   if(title === null) return;
-
   const text = prompt("Edit news details", oldText);
   if(text === null) return;
 
-  await updateDoc(doc(db, "news", id), {
-    title:title,
-    text:text
-  });
-
+  await updateDoc(doc(db, "news", id), { title, text });
   status("News updated");
   await loadNews();
 };
 
 window.deleteNews = async function(id){
-  if(!auth.currentUser){
-    alert("Admin only");
-    return;
-  }
+  if(!auth.currentUser){ alert("Admin only"); return; }
 
   if(confirm("Delete this news?")){
     await deleteDoc(doc(db, "news", id));
@@ -407,21 +523,16 @@ async function loadEditions(){
 
     snap.forEach(docSnap => {
       const e = docSnap.data();
-
-      const title = e.title || "";
-      const date = e.date || "";
-      const url = e.url || "";
-
       const div = document.createElement("div");
       div.className = "card";
 
       div.innerHTML = `
-        <h3>${escapeHTML(title)}</h3>
-        <p><small>${escapeHTML(date)}</small></p>
-        <button type="button" onclick='openPDF(${JSON.stringify(url)})'>Open E-Paper</button>
+        <h3>${e.title || ""}</h3>
+        <p><small>${e.date || ""}</small></p>
+        <button type="button" onclick="openPDF('${e.url}')">Open E-Paper</button>
         ${isAdmin ? `
-          <button class="small-btn" type="button" onclick='editPDF(${JSON.stringify(docSnap.id)}, ${JSON.stringify(title)}, ${JSON.stringify(date)}, ${JSON.stringify(url)})'>Edit PDF</button>
-          <button class="small-btn delete-btn" type="button" onclick='deletePDF(${JSON.stringify(docSnap.id)})'>Delete PDF</button>
+          <button class="small-btn" type="button" onclick="editPDF('${docSnap.id}','${escapeText(e.title)}','${escapeText(e.date)}','${escapeText(e.url)}')">Edit PDF</button>
+          <button class="small-btn delete-btn" type="button" onclick="deletePDF('${docSnap.id}')">Delete PDF</button>
         ` : ""}
       `;
 
@@ -431,13 +542,9 @@ async function loadEditions(){
         home.innerHTML = `
           <div class="card">
             <h3>Today's E-Paper</h3>
-            <p>${escapeHTML(title)}</p>
-            <p><small>${escapeHTML(date)}</small></p>
-            <button type="button" onclick='openPDF(${JSON.stringify(url)})'>Open E-Paper</button>
-            ${isAdmin ? `
-              <button class="small-btn" type="button" onclick='editPDF(${JSON.stringify(docSnap.id)}, ${JSON.stringify(title)}, ${JSON.stringify(date)}, ${JSON.stringify(url)})'>Edit PDF</button>
-              <button class="small-btn delete-btn" type="button" onclick='deletePDF(${JSON.stringify(docSnap.id)})'>Delete PDF</button>
-            ` : ""}
+            <p>${e.title || ""}</p>
+            <p><small>${e.date || ""}</small></p>
+            <button type="button" onclick="openPDF('${e.url}')">Open E-Paper</button>
           </div>
         `;
         first = false;
@@ -445,7 +552,7 @@ async function loadEditions(){
     });
 
   }catch(error){
-    list.innerHTML = "<p>Error loading PDFs: " + escapeHTML(error.message) + "</p>";
+    list.innerHTML = "<p>Error loading PDFs: " + error.message + "</p>";
     home.innerHTML = "<p>Error loading latest PDF.</p>";
   }
 }
@@ -467,19 +574,15 @@ async function loadNews(){
 
     snap.forEach(docSnap => {
       const n = docSnap.data();
-
-      const title = n.title || "";
-      const text = n.text || "";
-
       const div = document.createElement("div");
       div.className = "card";
 
       div.innerHTML = `
-        <h3>${escapeHTML(title)}</h3>
-        <p>${escapeHTML(text)}</p>
+        <h3>${n.title || ""}</h3>
+        <p>${n.text || ""}</p>
         ${isAdmin ? `
-          <button class="small-btn" type="button" onclick='editNews(${JSON.stringify(docSnap.id)}, ${JSON.stringify(title)}, ${JSON.stringify(text)})'>Edit News</button>
-          <button class="small-btn delete-btn" type="button" onclick='deleteNews(${JSON.stringify(docSnap.id)})'>Delete News</button>
+          <button class="small-btn" type="button" onclick="editNews('${docSnap.id}','${escapeText(n.title)}','${escapeText(n.text)}')">Edit News</button>
+          <button class="small-btn delete-btn" type="button" onclick="deleteNews('${docSnap.id}')">Delete News</button>
         ` : ""}
       `;
 
@@ -487,17 +590,16 @@ async function loadNews(){
     });
 
   }catch(error){
-    list.innerHTML = "Error loading news: " + escapeHTML(error.message);
+    list.innerHTML = "Error loading news: " + error.message;
   }
 }
 
-function escapeHTML(text){
+function escapeText(text){
   return String(text || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/\n/g, "\\n");
 }
 
 loadEditions();
