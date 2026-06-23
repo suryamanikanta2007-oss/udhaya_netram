@@ -349,8 +349,16 @@ window.addNews=async function(){
   }catch(e){status("News add failed: "+e.message)}
 };
 
-window.openPDF=function(url){
-  window.open(url,"_blank");
+window.openPDF = function(url){
+  let finalUrl = url;
+
+  if(url.includes("github.com") && url.includes("/blob/")){
+    finalUrl = url
+      .replace("https://github.com/", "https://raw.githubusercontent.com/")
+      .replace("/blob/", "/");
+  }
+
+  window.open(finalUrl, "_blank");
 };
 
 window.editPDF=async function(id,title,date,url){
